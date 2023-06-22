@@ -1,12 +1,10 @@
 :root{
-    --normal-background: #1a1a1a;
-    --stop-background:#C60021;
+    --normal-andon-background: #1a1a1a;
+    --active-andon-background:#C60021;
     
 }
 
-.background{
-    background-color:var(--normal-background);
-}
+
 
 .text-content{
     color: #F6F6F8;
@@ -15,7 +13,7 @@
     margin: 0 !important;
 }
 .unactive-andon{
-    background-color: var(--normal-background);
+    background-color: var(--normal-andon-background);
 }
 
 .active-andon{
@@ -24,6 +22,10 @@
   }
   
   @keyframes cambioFondo {
-    from { background-color: var(--normal-background); } /* Color de fondo inicial */
-    to { background-color: var(--stop-background); } /* Color de fondo final */
+    from { 
+        background-color: var(--normal-andon-background);
+     } /* Color de fondo inicial */
+    to { 
+        background-color: var(--active-andon-background);
+     } /* Color de fondo final */
   }

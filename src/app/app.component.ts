@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Line1040Component } from './line1040/line1040.component';
 import { ClockComponent } from './clock/clock.component';
 import { DomSanitizer } from '@angular/platform-browser';
+import { SharedService } from './shared.service';
+
 
 @Component({
   selector: 'app-root',
@@ -11,15 +13,19 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 export class AppComponent {
   title = 'Andon2.0.front';
-  lineNumber = 'al 1040/1019'
   imagepath: string = 'assets/img/ZKW-Logo.png';
-  changeBg: boolean = false;
-  andonBtn: string = 'activate'
+  lineNumber: string = 'al 1040/1019';
+  
+ 
+ 
+constructor(public sanitizer: DomSanitizer, private sharedService: SharedService ){
 
-constructor(public sanitizer: DomSanitizer){
+
 }
-onChangeBg(){
-  this.changeBg = !this.changeBg;
-  this.andonBtn = 'unactive';
+get changeBg(): boolean {
+  return this.sharedService.changeBg.value;
 }
+
+
+
 }

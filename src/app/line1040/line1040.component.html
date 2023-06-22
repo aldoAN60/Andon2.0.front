@@ -1,19 +1,73 @@
-    <div class="row text-content fs-1 fw-bold">
-      <div class="col-sm-4">OK parts [numbers]</div>
-      <div class="col-sm-4">NOK parts [numbers]</div>
-      <div class="col-sm-4">scrap rate [percentage]</div>
+<div class="row text-content fs-1 fw-bold">
+  <div class="col-sm-4 border border-4 border-white">
+    <div class="row">
+      <div class="col">OK parts</div>
     </div>
-    <div class="row text-content fs-1 fw-bold">
-      <div class="col-sm-6"> target qty [numbers]</div>
-      <div class="col-sm-6">target qty w/o downtimes [numbers]</div>
+    <div class="row">
+      <div class="col">[numbers]</div>
     </div>
-    <div class="row text-content fs-1 fw-bold">
-      <div class="col-sm-4">directly OK rate [percentage]</div>
-      <div class="col-sm-4">STATUS</div>
-      <div class="col-sm-4">bloque 8</div>
+  </div>
+  <div class="col-sm-4 border border-4 border-white">
+    <div class="row">
+      <div class="col">NOK parts</div>
     </div>
-    <div class="row text-content fs-1 fw-bold">
-      <div class="col-sm-4">bloque 9</div>
-      <div class="col-sm-4">bloque 10</div>
-      <div class="col-sm-4">bloque 11</div>
+    <div class="row">
+      <div class="col">[numbers]</div>
     </div>
+  </div>
+  <div class="col-sm-4 border border-4 border-white">
+    <div class="row">
+      <div class="col">scrap rate</div>
+    </div>
+    <div class="row">
+      <div class="col">[percentage]</div>
+    </div>
+  </div>
+</div>
+<div class="row text-content fs-1 fw-bold">
+  <div class="col-sm-6 border border-4 border-white">
+    <div class="row">
+      <div class="col">target qty</div>
+    </div>
+    <div class="row">
+      <div class="col">[numbers]</div>
+    </div>
+    </div>
+  <div class="col-sm-6 border border-4 border-white">
+    <div class="row">
+      <div class="col">target qty w/o downtimes</div>
+    </div>
+    <div class="row">
+      <div class="col">[numbers]</div>
+    </div>
+    </div>
+</div>
+<div class="row text-content fs-1 fw-bold">
+  <div class="col-sm-4 border border-4 border-white">
+    <div class="row">
+      <div class="col">directly OK rate</div>
+    </div>
+    <div class="row">
+      <div class="col">[percentage]</div>
+    </div>
+     </div>
+  <div class="col-sm-4 border border-4 border-white">STATUS</div>
+  <div class="col-sm-4 border border-4 border-white">bloque 8</div>
+</div>
+<div class="row text-content fs-1 fw-bold">
+  <div class="col-sm-4 border border-4 border-white">bloque 9</div>
+  <div class="col-sm-4 border border-4 border-white">bloque 10</div>
+  <div class="col-sm-4 border border-4 border-white">
+    <div class="row">
+      <div class="col">andon timer active</div>
+    </div>
+    <div class="row">
+      <div class="col">{{ time | date:'mm:ss.S' }}</div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <button (click)="andonStop()" [ngClass]="changeBg ? 'btn-success' : 'btn-danger'" class="fs-3 btn w-50 mt-5 text-uppercase">{{andonBtn ? 'active' : 'unactive'}} Andon</button>
+  </div>
+</div>
