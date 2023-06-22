@@ -16,16 +16,16 @@
     background-color: var(--normal-andon-background);
 }
 
-.active-andon{
-    /* Cambia el color de fondo como desees */
-    animation: cambioFondo 1s infinite alternate; /* Agrega una animación */
+.active-andon{ /* class that gonna be set when the andon being activate */
+    
+    animation: cambioFondo 0.5s infinite alternate; 
   }
   
   @keyframes cambioFondo {
     from { 
         background-color: var(--normal-andon-background);
-     } /* Color de fondo inicial */
+     } /* background initial value */
     to { 
         background-color: var(--active-andon-background);
-     } /* Color de fondo final */
+     } /* background final value */
   }
