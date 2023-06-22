@@ -1,0 +1,29 @@
+:root{
+    --normal-background: #1a1a1a;
+    --stop-background:#C60021;
+    
+}
+
+.background{
+    background-color:var(--normal-background);
+}
+
+.text-content{
+    color: #F6F6F8;
+}
+.row{ /* this style avoid the overflow from his original boostrap class */
+    margin: 0 !important;
+}
+.unactive-andon{
+    background-color: var(--normal-background);
+}
+
+.active-andon{
+    /* Cambia el color de fondo como desees */
+    animation: cambioFondo 1s infinite alternate; /* Agrega una animación */
+  }
+  
+  @keyframes cambioFondo {
+    from { background-color: var(--normal-background); } /* Color de fondo inicial */
+    to { background-color: var(--stop-background); } /* Color de fondo final */
+  }
