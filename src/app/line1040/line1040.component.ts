@@ -15,11 +15,40 @@ export class Line1040Component implements OnInit {
   isRunning: boolean = false;
   changeBg: boolean = false;
   andonBtn: boolean = true;
+  andonTime:number = 0;
 
   ngOnInit(): void {
     // Código de inicialización, si es necesario
   }
 
+  private intervalId: any;
+  private startTime: number=0;
+
+  andonStop(): void { //method to active the timer and the animation background change also for the button color
+
+    this.andonBtn = !this.andonBtn;
+    this.changeBg = !this.changeBg;
+    this.sharedService.andonActivate();
+    this.timer();
+
+  }
+  timer(){  //timer to count the time that the andon was activated
+    if (this.isRunning) {
+      clearInterval(this.intervalId);
+      this.andonTime += this.time;
+      this.time = 0;
+    } else {
+      this.startTime = Date.now() - this.time;
+      this.intervalId = setInterval(() => {
+        this.time = Date.now() - this.startTime;
+      }, 10);
+    }
+    this.isRunning = !this.isRunning;
+  }
+
+
+  
+/*
   andonStop(): void {
     this.andonBtn = !this.andonBtn;
     this.changeBg = !this.changeBg;
@@ -27,12 +56,14 @@ export class Line1040Component implements OnInit {
     
     if (this.isRunning) {
       clearInterval(this.intervalo);
+      //this.andonTime += this.time;
+      //this.time = 0;
     } else {
       this.intervalo = setInterval(() => {
         this.time += 10;
       }, 10);
     }
     this.isRunning = !this.isRunning;
-    this.time = 0;
-  }
+    //this.time = 0;
+  } */
 }
