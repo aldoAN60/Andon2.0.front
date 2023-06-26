@@ -1,38 +1,83 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedService } from '../shared.service';
+import { SharedService } from '../shared/shared.service';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-line1040',
   templateUrl: './line1040.component.html',
-  styleUrls: ['./line1040.component.css']
+  styleUrls: ['./line1040.component.css'],
 })
 export class Line1040Component implements OnInit {
-  constructor(private sharedService: SharedService) {}
+  
+  title = 'Andon2.0.front';
+  imagepath: string = 'assets/img/ZKW-Logo.png';
+  lineNumber: string = 'al 1040/1019';
 
-  //lineNumber: string = 'al 1040/1019';
+  productionLines: any;
   time: number = 0;
   intervalo: any;
   isRunning: boolean = false;
   changeBg: boolean = false;
   andonBtn: boolean = true;
-  andonTime:number = 0;
-
-  ngOnInit(): void {
-    // Código de inicialización, si es necesario
-  }
+  andonTime: number = 0;
 
   private intervalId: any;
-  private startTime: number=0;
+  private startTime: number = 0;
 
-  andonStop(): void { //method to active the timer and the animation background change also for the button color
+  audio: HTMLAudioElement;
+  audiopath: string = 'assets/audio/alarm.mp3';
+  isplaying = false;
+
+  constructor(private route: ActivatedRoute, private http: HttpClient, public sanitizer: DomSanitizer) {
+    this.audio = new Audio();
+    this.audio.src = this.audiopath;
+
+  }
+
+  ngOnInit(){
+    this.route.paramMap.subscribe((params) => {
+      const line_number = params.get('line_number');
+      
+      if (line_number !== null) {
+        this.getProductionLines(line_number);   
+        
+      }else{
+      
+      }
+
+    });
+    
+  }
+
+  
+
+  getProductionLines(line_number: string) {
+    const url = 'http://127.0.0.1:8000/api/production_lines/' + line_number;
+    this.http.get<any>(url).subscribe(
+      (data) => {
+        this.productionLines = data;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+
+  andonStop(): void {
+    //method to active the timer, alarm,  background color change animation and for the button color
 
     this.andonBtn = !this.andonBtn;
     this.changeBg = !this.changeBg;
-    this.sharedService.andonActivate();
+    this.isplaying = !this.isplaying;
     this.timer();
-
+    this.andonAlarm();
   }
-  timer(){  //timer to count the time that the andon was activated
+  timer() {
+    //timer to count the time that the andon was activated
     if (this.isRunning) {
       clearInterval(this.intervalId);
       this.andonTime += this.time;
@@ -45,25 +90,14 @@ export class Line1040Component implements OnInit {
     }
     this.isRunning = !this.isRunning;
   }
-
-
-  
-/*
-  andonStop(): void {
-    this.andonBtn = !this.andonBtn;
-    this.changeBg = !this.changeBg;
-    this.sharedService.andonActivate();
+  andonAlarm() {
     
-    if (this.isRunning) {
-      clearInterval(this.intervalo);
-      //this.andonTime += this.time;
-      //this.time = 0;
+    if (this.isplaying) {
+      this.audio.loop = true;
+      this.audio.play();
     } else {
-      this.intervalo = setInterval(() => {
-        this.time += 10;
-      }, 10);
+      this.audio.loop = false;
+      this.audio.pause();
     }
-    this.isRunning = !this.isRunning;
-    //this.time = 0;
-  } */
+  }
 }
