@@ -1,19 +1,23 @@
 :root{
     --normal-andon-background: #1a1a1a;
     --active-andon-background:#C60021;
+    --background-gradient-1st: #202020;
+    --background-gradient-2nd:#141414;
     
 }
 
-
+body{
+    background: radial-gradient(circle,var(--background-gradient-1st) 0%, var(--background-gradient-2nd) 100%);
+}
+.container-bg-color{
+    background: radial-gradient(circle,var(--background-gradient-2nd) 0%, var(--background-gradient-1st) 100%);
+}
 
 .text-content{
     color: #F6F6F8;
 }
 .row{ /* this style avoid the overflow from his original boostrap class */
     margin: 0 !important;
-}
-.unactive-andon{
-    background-color: var(--normal-andon-background);
 }
 
 .active-andon{ /* class that gonna be set when the andon being activate */

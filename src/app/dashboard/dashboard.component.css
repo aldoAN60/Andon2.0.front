@@ -1,0 +1,17 @@
+.container-line{
+    background: linear-gradient( #00A84F, #007537);
+    width: 25%;
+}
+.production-running{
+    font-size: 60px;
+    color:#00A84F;
+    text-transform: uppercase;
+}
+.production-stopped {
+    font-size: 60px;
+    color:#ED8200;
+    text-transform: uppercase;
+}
+.cotainer-bg-error{
+    background: linear-gradient(#C60021, #940019);
+}

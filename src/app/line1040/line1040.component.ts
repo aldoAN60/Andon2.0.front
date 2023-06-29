@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedService } from '../shared/shared.service';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,28 +11,33 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class Line1040Component implements OnInit {
   
-  title = 'Andon2.0.front';
-  imagepath: string = 'assets/img/ZKW-Logo.png';
-  lineNumber: string = 'al 1040/1019';
+  
+  
 
-  productionLines: any;
+  productionLines: any; // object saves the information from db consult
+
+  // variables for the timer
   time: number = 0;
-  intervalo: any;
-  isRunning: boolean = false;
-  changeBg: boolean = false;
-  andonBtn: boolean = true;
-  andonTime: number = 0;
-
   private intervalId: any;
   private startTime: number = 0;
+  isRunning: boolean = false;
+  andonTime: number = 0; // saves the total time the andan was activated
+
+  changeBg: boolean = false; // activates the background change color animation when the andon button is pressed
+  andonBtn: boolean = true; // activates the background color change of the andon button
+  
+
+  
 
   audio: HTMLAudioElement;
   audiopath: string = 'assets/audio/alarm.mp3';
   isplaying = false;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, public sanitizer: DomSanitizer) {
+
+  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {
     this.audio = new Audio();
     this.audio.src = this.audiopath;
+    
 
   }
 
@@ -59,6 +63,10 @@ export class Line1040Component implements OnInit {
     this.http.get<any>(url).subscribe(
       (data) => {
         this.productionLines = data;
+        
+        if (typeof this.productionLines.line_number === 'undefined') {
+          this.router.navigate(['/nonexistent-route']);
+        }
       },
       (error) => {
         console.error(error);
@@ -81,6 +89,7 @@ export class Line1040Component implements OnInit {
     if (this.isRunning) {
       clearInterval(this.intervalId);
       this.andonTime += this.time;
+      
       this.time = 0;
     } else {
       this.startTime = Date.now() - this.time;
