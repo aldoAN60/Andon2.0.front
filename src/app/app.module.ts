@@ -22,6 +22,7 @@ import { WrongRouteComponent } from './wrong-route/wrong-route.component';
     WrongRouteComponent,
     
     
+    
   ],
   imports: [
     BrowserModule,

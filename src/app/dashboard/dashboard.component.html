@@ -1,46 +1,34 @@
 <main class="text-light">
     <div class="row">
         <div class="col-sm-4">
+
             <article  class="container-bg-color p-3 rounded-4 text-center" >
                 <h2 class="text-uppercase">lines in production</h2>
                 <div class="d-flex flex-row justify-content-evenly flex-wrap  ">
-                    <div class="container-line mb-2 me-2 mt-2 p-2 fs-2 rounded-2 " *ngFor="let line of productionLines">{{line.line_number}}</div>
+                    <div  class=" mb-2 me-2 mt-2 p-2 fs-2 rounded-2 " *ngFor="let line of productionLines" [ngClass]="line.current_status=='RUNNING' ? 'container-line-running' : 'container-line-stopped'">{{line.line_number}}</div>
                 </div>
             </article>
         </div>
         <div class="col-sm-8 d-flex flex-column justify-content-center ">
             <nav class="container-bg-color text-center rounded-4 p-3 ">
-                <div>
-                    <h1 class="production-running d-none ">production running </h1>
-                    <h1 class="production-stopped  ">production stopped </h1>
+                <div  >
+                    <h1 *ngIf="LinesRunning == true" class="production-running ">production running </h1>
+                    <h1 *ngIf="LinesRunning == false" class="production-stopped  ">production stopped </h1>
                 </div>
-                <div class="text-uppercase fs-3">
+                <div *ngIf="LinesRunning == false" class="text-uppercase fs-3">
                     <div class="row">
                         <div class="col-4"><p>line number</p></div>
                         <div class="col-4"><p>reason given</p></div>
                         <div class="col-4"><p>time elapse</p></div>
                     </div>
-                </div>
-
-                <div class="cotainer-bg-error p-1 mt-4">
-                    <div class="row">
-                        <div class="col-4"><h2>1055</h2></div>
-                        <div class="col-4"><h2>WO material </h2></div>
-                        <div class="col-4"><h2>4.25</h2></div>
-                    </div>
-                </div>
-                <div class="cotainer-bg-error p-1 mt-4">
-                    <div class="row">
-                        <div class="col-4"><h2>1055</h2></div>
-                        <div class="col-4"><h2>WO material </h2></div>
-                        <div class="col-4"><h2>4.25</h2></div>
-                    </div>
-                </div>
-                <div class="cotainer-bg-error p-1 mt-4">
-                    <div class="row">
-                        <div class="col-4"><h2>1055</h2></div>
-                        <div class="col-4"><h2>WO material </h2></div>
-                        <div class="col-4"><h2>4.25</h2></div>
+                    <div  *ngFor="let line of productionLines" >
+                        <div class="cotainer-bg-error p-1 mt-4" *ngIf="line.current_status == 'STOPPED'">
+                            <div class="row">
+                                <div class="col-4"><h2>{{line.line_number}}</h2></div>
+                                <div class="col-4"><h2>{{line.reason}} </h2></div>
+                                <div class="col-4"><h2>{{this.prueba(line.stopped_at)}}</h2></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </nav>

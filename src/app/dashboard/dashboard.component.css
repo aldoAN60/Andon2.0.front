@@ -1,5 +1,9 @@
-.container-line{
+.container-line-running{
     background: linear-gradient( #00A84F, #007537);
+    width: 25%;
+}
+.container-line-stopped{
+    background: linear-gradient( #940019, #C60021 );
     width: 25%;
 }
 .production-running{

@@ -1,0 +1,35 @@
+[33mcommit 023413806744c74efe7f4abc20261cf7c4604ef4[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: aldo armenta <AldoGuadalupe.Armenta@zkw.mx>
+Date:   Thu Jun 29 09:28:40 2023 -0600
+
+    se realizo la vista de maintenance dashboard y se crearon rutas seguras
+
+[33mcommit 6738088ca591eb46ade47773d3c7b0a2bb9899dc[m
+Author: aldo armenta <AldoGuadalupe.Armenta@zkw.mx>
+Date:   Mon Jun 26 10:06:12 2023 -0600
+
+    se agrego una alarma que se activa cada vez que se activa el boton del andon, ademas se inicio con la configuracion de rutas
+
+[33mcommit 747e0b0f79ded77aa5d1ce40fc260c55025ba7b3[m
+Author: aldo armenta <AldoGuadalupe.Armenta@zkw.mx>
+Date:   Thu Jun 22 22:01:58 2023 -0600
+
+    optimizacion del temporizador que se muestra el activar el andon
+
+[33mcommit db76aee390f0ee7b818c7eb07ace50774b295cd6[m
+Author: aldo armenta <AldoGuadalupe.Armenta@zkw.mx>
+Date:   Thu Jun 22 14:54:30 2023 -0600
+
+    se cambiaron los comentario del main css de español a ingles
+
+[33mcommit a9a0eab48866e7461aae8ae84ce654b1459059e5[m
+Author: aldo armenta <AldoGuadalupe.Armenta@zkw.mx>
+Date:   Thu Jun 22 14:44:57 2023 -0600
+
+    se genero un contador para saber el tiempo que lleva el andon activado y se agregaron bordes a los elementos para hacerlos mas entendibles
+
+[33mcommit c10f9c8bd046b202eeb7cf98c9705b6e838877bb[m
+Author: aldo armenta <AldoGuadalupe.Armenta@zkw.mx>
+Date:   Thu Jun 22 08:10:51 2023 -0600
+
+    first commit
