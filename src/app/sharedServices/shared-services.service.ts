@@ -7,17 +7,11 @@ import { of } from 'rxjs';
   providedIn: 'root'
 })
 export class SharedServicesService {
-private data:any;
-
-  constructor(private http: HttpClient) { }
 
 
-  updateData(newData: any):void{
-    this.data = newData;
-  }
-  getData():any{
-    return this.data;
-  }
+  constructor() { }
+
+
 
   formatTime(time: number): string {
     const hours = Math.floor(time / 3600000);

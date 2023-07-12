@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Route } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
-import { Line1040Component } from '../line1040/line1040.component';
 import { SharedServicesService } from '../sharedServices/shared-services.service';
 
 @Component({
@@ -21,9 +17,7 @@ export class DashboardComponent implements OnInit {
 
 
   constructor(
-    private route: ActivatedRoute,
     private http: HttpClient,
-    private router: Router,
     public sharedService: SharedServicesService
   ) {}
 
