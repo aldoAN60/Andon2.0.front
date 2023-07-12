@@ -82,23 +82,10 @@ export class Line1040Component implements OnInit {
         
       }
     });
-
-    this.resoredData();
-    
-    this.checkingTimeLeft();
-    
-    
   }
-  
-  
-  
- 
-  
 
   andonStop(): void { //method that just call all the other methods 
     this.count++;
-    
-    
     const mainReason =  this.getRandomReason();
     this.andonBtn = !this.andonBtn;
     localStorage.setItem('andonBTN ' + this.actualLineNumber,  this.andonBtn.toString());
@@ -118,12 +105,7 @@ export class Line1040Component implements OnInit {
       this.andonActivation(this.actualLineNumber, mainReason);
     }
   }
-
- 
   
-
-
-
   /**********************GETINGS METHODS*********************************/
   getProductionLines(line_number: string) { // method that requests to an API the information of some production line
     const url = 'http://127.0.0.1:8000/api/production_lines/' + line_number;
