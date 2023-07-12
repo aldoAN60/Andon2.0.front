@@ -36,6 +36,9 @@ getPageTitleFromRoute(url: string): string {
     case '/dashboard-maintenance':
       this.pagetitle = 'maintenance dashboard';
       return 'maintenance dashboard';
+      case '/observableTest':
+        this.pagetitle = 'observable test';
+      return 'observable test';
     default:
       // Obtener el line_number de la URL
       const line_number = this.extractLineNumberFromUrl(url);

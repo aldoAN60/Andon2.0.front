@@ -4,6 +4,7 @@ import { Route } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Line1040Component } from '../line1040/line1040.component';
+import { SharedServicesService } from '../sharedServices/shared-services.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,7 +23,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    public sharedService: SharedServicesService
   ) {}
 
   ngOnInit() {
@@ -44,20 +46,5 @@ export class DashboardComponent implements OnInit {
         console.error(error);
       }
     );
-  }
-  timeCalculator(DBtime: string) {
-    const actual = new Date(DBtime);
-    const actualDate = new Date();
-    const fechaAct = actualDate.getTime() - actual.getTime();
-    return this.formatTime(fechaAct);
-  }
-
-  formatTime(time: number): string {
-    const hours = Math.floor(time / 3600000);
-    const minutes = Math.floor((time % 3600000) / 60000);
-    const seconds = Math.floor((time % 60000) / 1000);
-    return `${hours.toString().padStart(2, '0')}:${minutes
-      .toString()
-      .padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   }
 }

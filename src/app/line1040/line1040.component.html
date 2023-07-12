@@ -62,7 +62,7 @@
           <div class="col text-uppercase" [ngClass]="changeBg ? 'text-warning' : 'text-success'">{{changeBg ? 'paro' : 'producción'}}</div>
         </div>
       </div>
-      <div class="col-sm-4 border border-4 border-white">bloque 8</div>
+      <div class="col-sm-4 border border-4 border-white">{{testdata}}</div>
     </div>
     <div class="row text-light">
       <div class="col-sm-4 border border-4 border-white">bloque 9</div>
@@ -71,7 +71,8 @@
           <div class="col fs-2">cumulative stoppage time</div>
         </div>
         <div class="col">
-          {{ localStorageAndonTime !== 0 ? formatTime(localStorageAndonTime) : '00:00:00' }}
+          <!-- {{ localStorageAndonTime !== 0 ? formatTime(localStorageAndonTime) : '00:00:00' }} -->
+          {{actualCST?.cumulative_stoppage_time}}
         </div>
         
       </div>
@@ -80,7 +81,10 @@
           <div class="col">andon timer active</div>
         </div>
         <div class="row">
-          <div class="col">{{ time | date:'mm:ss' }}</div>
+        <!--  <div class="col">{{ time | date:'mm:ss' }}</div>  -->
+        <div class="col" *ngIf="actualCST?.stopped_at">{{this.dataService.timeCalculator(actualCST.stopped_at)}}</div>  
+        
+        <div class="col" *ngIf="actualCST?.stopped_at == null">00:00:00</div>
         </div>
       </div>
     </div>
