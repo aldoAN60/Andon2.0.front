@@ -232,32 +232,6 @@ export class Line1040Component implements OnInit {
       this.audio.pause();
     }
   }
-
-  /**********************helpers methods******************/
-  
-
-  getRandomReason() { // trash method it's just to get a random item from the object reasons 
-    const random = Math.round(Math.random() * (this.reasons.length - 1));
-    return this.reasons[random];
-  }
-  
-  convertTimeToSeconds(time: string): number {
-    const timeParts = time.split(':');
-    const hours = parseInt(timeParts[0]);
-    const minutes = parseInt(timeParts[1]);
-    const seconds = parseInt(timeParts[2]);
-  
-    const totalSeconds = (hours * 3600) + (minutes * 60) + seconds;
-    return totalSeconds;
-  }
-  convertSecondsToTime(totalSeconds: number): string {
-    const hours = Math.floor(totalSeconds / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    const seconds = Math.floor(totalSeconds % 60);
-    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  }
-  
-/******  methods probably i gonna use ********/ 
   resoredData(){
     const storedValue = localStorage.getItem('andonTime ' + this.actualLineNumber);
     
@@ -283,6 +257,32 @@ export class Line1040Component implements OnInit {
     
 
   }
+  /**********************helpers methods******************/
+  
+
+  getRandomReason() { // trash method it's just to get a random item from the object reasons 
+    const random = Math.round(Math.random() * (this.reasons.length - 1));
+    return this.reasons[random];
+  }
+  
+  convertTimeToSeconds(time: string): number {
+    const timeParts = time.split(':');
+    const hours = parseInt(timeParts[0]);
+    const minutes = parseInt(timeParts[1]);
+    const seconds = parseInt(timeParts[2]);
+  
+    const totalSeconds = (hours * 3600) + (minutes * 60) + seconds;
+    return totalSeconds;
+  }
+  convertSecondsToTime(totalSeconds: number): string {
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = Math.floor(totalSeconds % 60);
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  }
+  
+/******  methods probably i gonna use ********/ 
+
   checkingTimeLeft(){
     const currentTime = new Date(); // Hora actual
 
