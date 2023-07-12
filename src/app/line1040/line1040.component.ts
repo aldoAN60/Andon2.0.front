@@ -82,6 +82,7 @@ export class Line1040Component implements OnInit {
         
       }
     });
+    this.resoredData();
   }
 
   andonStop(): void { //method that just call all the other methods 
@@ -122,19 +123,6 @@ export class Line1040Component implements OnInit {
       return of(null);
     })
   ).subscribe();
-    
-    /*const url = 'http://127.0.0.1:8000/api/production_lines/' + line_number;
-    this.http.get<any>(url).subscribe(
-      (data) => {
-        this.productionLines = data;
-        if (typeof this.productionLines.line_number === 'undefined') {
-          this.router.navigate(['/nonexistent-route']);
-        }
-      },
-      (error) => {
-        console.error(error);
-      }
-    );*/
   }
 
   getCST(line_number: string){
@@ -150,16 +138,6 @@ export class Line1040Component implements OnInit {
       return of (null);
     })
   ).subscribe();
-   /* const url ='http://127.0.0.1:8000/api/cumulative_stoppage_time/' + line_number;
-    this.http.get<any>(url).subscribe(
-      (data) => {
-        this.actualCST = data;
-        this.timeCalculator(this.actualCST.stopped_at);
-      },
-      (error) => {
-        console.error(error);
-      }
-      );*/
   } 
   
 
@@ -214,32 +192,6 @@ export class Line1040Component implements OnInit {
       this.audio.pause();
     }
   }
-
-  /**********************helpers methods******************/
-  
-
-  getRandomReason() { // trash method it's just to get a random item from the object reasons 
-    const random = Math.round(Math.random() * (this.reasons.length - 1));
-    return this.reasons[random];
-  }
-  
-  convertTimeToSeconds(time: string): number {
-    const timeParts = time.split(':');
-    const hours = parseInt(timeParts[0]);
-    const minutes = parseInt(timeParts[1]);
-    const seconds = parseInt(timeParts[2]);
-  
-    const totalSeconds = (hours * 3600) + (minutes * 60) + seconds;
-    return totalSeconds;
-  }
-  convertSecondsToTime(totalSeconds: number): string {
-    const hours = Math.floor(totalSeconds / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    const seconds = Math.floor(totalSeconds % 60);
-    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  }
-  
-/******  methods probably i gonna use ********/ 
   resoredData(){
     const storedValue = localStorage.getItem('andonTime ' + this.actualLineNumber);
     
@@ -265,6 +217,32 @@ export class Line1040Component implements OnInit {
     
 
   }
+  /**********************helpers methods******************/
+  
+
+  getRandomReason() { // trash method it's just to get a random item from the object reasons 
+    const random = Math.round(Math.random() * (this.reasons.length - 1));
+    return this.reasons[random];
+  }
+  
+  convertTimeToSeconds(time: string): number {
+    const timeParts = time.split(':');
+    const hours = parseInt(timeParts[0]);
+    const minutes = parseInt(timeParts[1]);
+    const seconds = parseInt(timeParts[2]);
+  
+    const totalSeconds = (hours * 3600) + (minutes * 60) + seconds;
+    return totalSeconds;
+  }
+  convertSecondsToTime(totalSeconds: number): string {
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = Math.floor(totalSeconds % 60);
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  }
+  
+/******  methods probably i gonna use ********/ 
+
   checkingTimeLeft(){
     const currentTime = new Date(); // Hora actual
 
