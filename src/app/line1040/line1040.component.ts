@@ -3,11 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { SharedServicesService } from '../sharedServices/shared-services.service';
-import { Observable, Subject, throwError } from 'rxjs';
-
+import { Observable, Subject } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
-
 
 @Component({
   selector: 'app-line1040',

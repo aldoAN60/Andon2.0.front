@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SharedServicesService } from '../sharedServices/shared-services.service';
+import { interval } from 'rxjs';
+import { take } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -23,9 +27,24 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getProductionLines();
-  }
+    const interval$ = interval(5000); // 10000 milisegundos = 10 segundos
+    interval$.pipe(take(Infinity)).subscribe(() => {
+      this.getProductionLines();
 
+    });
+  }
+  
   getProductionLines() {
+    const url = 'http://127.0.0.1:8000/api/dashboard-maintenance';
+    
+    return this.http.get<any>(url).pipe(
+      map((data) => {
+        this.productionLines = data;
+        this.LinesRunning = !this.productionLines.some((line: { current_status: string; }) => line.current_status === 'STOPPED');
+      })
+    ).subscribe();
+  }
+/*  getProductionLines() {
     const url = 'http://127.0.0.1:8000/api/dashboard-maintenance';
     this.http.get<any>(url).subscribe(
       (data) => {
@@ -40,5 +59,5 @@ export class DashboardComponent implements OnInit {
         console.error(error);
       }
     );
-  }
+  }*/
 }
