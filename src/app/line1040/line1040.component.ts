@@ -121,21 +121,39 @@ export class Line1040Component implements OnInit {
  * del sistema de Andon. Dependiendo del estado actual del sistema, puede activar o desactivar el Andon, 
  * cambiar colores, animaciones y reproducir una alarma.
  */
-  andonStop(): void {
-    this.count++;
-    const mainReason = this.getRandomReason();
-  
-    this.toggleAndonBtnColorChg();
-    this.toggleChangeBg();
-    this.isplaying = !this.isplaying;
-  
-    if (this.andonBtnColorChg) {
-      this.andonUnactivation(this.actualLineNumber);
-      this.count = 0;
-    } else {
-      this.andonActivation(this.actualLineNumber, mainReason);
-    }
+andonStop(): void {
+  this.count++;
+  const mainReason = this.getRandomReason();
+
+  this.toggleAndonBtnColorChg();
+  this.toggleChangeBg();
+  this.isplaying = !this.isplaying;
+
+  if (this.andonBtnColorChg) {
+    this.disabledAndonBTN();
+    this.andonUnactivation(this.actualLineNumber);
+    this.count = 0;
+  } else {
+    this.disabledAndonBTN();
+    this.andonActivation(this.actualLineNumber, mainReason);
   }
+}
+
+
+
+/**
+* @author aldo armenta
+* @description
+* Este metodo extrae el atributo tipo 'button' HTML con el id 'andonBTN' para posteriormente deshabilitarlo (disabled)
+* y despues de 10 segundos volverlo a habilitar (enabled).
+*/
+disabledAndonBTN(){
+  const andonBTN = document.getElementById('andonBTN') as HTMLButtonElement | null;
+  andonBTN?.setAttribute('disabled','');
+  setTimeout(() => {
+    andonBTN?.removeAttribute('disabled');
+  }, 10000);
+}
   /**
    * @author aldo armenta
    * @description
