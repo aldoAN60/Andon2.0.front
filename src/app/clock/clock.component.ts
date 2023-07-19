@@ -6,15 +6,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./clock.component.css']
 })
 export class ClockComponent {
- hrs: Date = new Date();
- Cdate: Date = new Date();
+  /**
+   * @type {Date} esta variable almacena la fecha actual pero mostrara solo la hora en formato [hh:mm:ss a]
+   */
+  timeNow!: Date;
+  /**
+   * @type {Date} esta variable almacena la fecha actual y la mostrara en formato [dd/MM/yyyy]
+   */
+  currentDate!: Date;
 
 
   constructor() {
     setInterval(() => {
-      this.hrs = new Date();
+      this.timeNow = new Date();
     }, 1000);
-    this.Cdate = new Date();
+    this.currentDate = new Date();
   }
   
 }
