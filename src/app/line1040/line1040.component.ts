@@ -250,13 +250,14 @@ disabledAndonBTN(){
         (Response) => {
           console.log('andon start');
           this.getCST(line_number); // getting the update information from the DB
+          this.sendEmail(this.actualLineNumber);
         },
         (error) => {
           console.error('error', error);
         }
       );
     }
-    
+
 /**
  * @author aldo armenta
  * @description
@@ -292,6 +293,7 @@ disabledAndonBTN(){
       (Response) => {
         console.log('andon stop');
         this.getCST(this.actualLineNumber); // getting the update information from the DB
+        this.sendEmail(this.actualLineNumber);
       },
       (error) => {
         console.error('error', error);
@@ -299,7 +301,28 @@ disabledAndonBTN(){
     );
   }
   
+  /**
+ * @author aldo armenta
+ * @description
+ * Envía una solicitud HTTP GET a la API de laravel para activar la notificación por correo electrónico
+ * con los datos de la línea de producción dada atraves del parametro.
+ * Si la solicitud se realiza correctamente, muestra "email enviado" en la consola.
+ * Si ocurre un error durante la solicitud, muestra "error al enviar el email" junto con los detalles del error en la consola.
+ * @param {string} line_number - El número de la línea de producción.
 
+ */
+  sendEmail(line_number: string){
+    const url = 'http://127.0.0.1:8000/api/sendMail/' + line_number;
+    this.http.get<any>(url).subscribe(
+      (Response) => {
+        console.log('email enviado');
+      },
+      (error) => {
+        console.log('error al enviar el email');
+        console.error(error);
+      }
+    );
+  }
   
   /**
    * @author aldo armenta

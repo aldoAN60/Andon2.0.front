@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { WrongRouteComponent } from './wrong-route/wrong-route.component';
 import { ProcessMonitor1Component } from './process-monitor1/process-monitor1.component';
+
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'production_lines/:line_number', component: Line1040Component},

@@ -15,6 +15,7 @@ export class AppComponent {
    * @type {string} Ruta donde se encuentra el logo de ZKW
    */
   imagepath: string = 'assets/img/ZKW-Logo.png'; // logo
+  title: any;
 
 
   constructor(public sanitizer: DomSanitizer, private titleService: Title, public router: Router, private route: ActivatedRoute) {
