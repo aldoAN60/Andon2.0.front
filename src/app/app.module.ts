@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { WrongRouteComponent } from './wrong-route/wrong-route.component';
-import { ObservableTestComponent } from './observable-test/observable-test.component';
+import { ProcessMonitor1Component } from './process-monitor1/process-monitor1.component';
 
 
 
@@ -21,7 +21,7 @@ import { ObservableTestComponent } from './observable-test/observable-test.compo
     HomeComponent,
     DashboardComponent,
     WrongRouteComponent,
-    ObservableTestComponent,
+    ProcessMonitor1Component,
     
     
     
