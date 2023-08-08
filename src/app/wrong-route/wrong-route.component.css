@@ -1,0 +1,57 @@
+.bigFont{
+    font-size: 5em;
+    color: red;
+    margin-bottom: -1rem;
+}
+
+
+
+.cardHeaderBG{
+    background-color:  #21262d;
+}
+.cardBodyBG{
+    background-color: #0d1117;
+}
+.conteiner-routes{
+    border:1px solid #0d1116;
+    border-radius: 8px;
+    box-shadow: 5px 6px 20px -5px rgba(44,47,51,0.75);
+    -webkit-box-shadow: 5px 6px 20px -5px rgba(44,47,51,0.75);
+    -moz-box-shadow: 5px 6px 20px -5px rgba(44,47,51,0.75);
+    height: 100%;
+
+}
+.conteiner-routes a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #f6f6f8;
+    padding-top: 1em;
+    padding-bottom: 0.4em;
+    
+}
+.icon-position{
+    position: absolute;
+    margin-top: 1em;
+    margin-left: 1.2em;
+    
+
+}
+select{
+    color: whitesmoke;
+    background-color: #21262d;
+    border:1px solid #0d1116;
+    
+}
+.container-select{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.wrong-select{
+    color: #c10d0d;
+    margin-top: -1em;
+    display: none;
+}

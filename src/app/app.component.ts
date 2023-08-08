@@ -21,7 +21,6 @@ export class AppComponent {
   constructor(public sanitizer: DomSanitizer, private titleService: Title, public router: Router, private route: ActivatedRoute) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.getPageTitleFromRoute(this.router.url); // Obtiene el título de la página según la ruta activa
         this.titleService.setTitle(this.getPageTitleFromRoute(this.router.url));
       }
     });
